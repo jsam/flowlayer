@@ -1,9 +1,9 @@
 import pytest
 from numpy import array
+from tests.fixtures import Fixture
 
 from flowlayer.core.network import Network
 from flowlayer.core.nodes import GearNode
-from tests.fixtures import Fixture
 
 
 def test_network_construction(mynetwork: Fixture[Network]) -> None:

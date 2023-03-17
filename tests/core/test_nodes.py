@@ -9,8 +9,9 @@ from numpy import ndarray
 
 def test_simple_func_analysis() -> None:
     """Test function analysis."""
-    from flowlayer.core.nodes import Signature
     from tests.fixtures import add
+
+    from flowlayer.core.nodes import Signature
 
     sig = Signature(add)
 
@@ -26,9 +27,10 @@ def test_simple_func_analysis() -> None:
 
 def test_depends_func_analysis() -> None:
     """Test function analysis with expressed dependency."""
+    from tests.fixtures import reduce
+
     from flowlayer.core.network import Depends
     from flowlayer.core.nodes import Signature
-    from tests.fixtures import reduce
 
     sig = Signature(reduce)
 

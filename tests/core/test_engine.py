@@ -1,9 +1,9 @@
 import pytest
+from tests.pytest_fixtures import Fixture
 
 from flowlayer.core.engine import DaskEngine, PoolEngine, SerialEngine
 from flowlayer.core.network import Network
 from flowlayer.core.nodes import GearNode, InvalidGraph, OutputNode
-from tests.fixtures import Fixture
 
 
 class TestSerialEngine:

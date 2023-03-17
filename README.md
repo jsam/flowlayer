@@ -50,6 +50,7 @@ To execute our newly composed computation, we can execute it with given paramete
 ```python
 my_graph.run(a=5, b=3, c=4, d=6)
 ```
+When executing it directely within the same thread, the `Flow` is using default `SerialEngine` for its computation. This means all tasks will be executed within the same thread sequentially. 
 
 # Remote Execution
 

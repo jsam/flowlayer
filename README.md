@@ -42,7 +42,7 @@ network.input_shape
 and similary `output_shape`:
 ```python
 network.output_shape
-> {'my_out': <class 'float'>}
+> {'my_out': float}
 ```
 
 

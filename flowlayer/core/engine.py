@@ -22,7 +22,6 @@ class SerialEngine(EngineAPI):
 
         data_node: OutputNode
         for data_node in self._network.compute_next():
-
             predeccesors: List[GearNode] = list(self._network.graph.predecessors(data_node))  # type: ignore
             if len(predeccesors) != 1:
                 raise InvalidGraph(f"found a data node produced by multiple gears: {predeccesors}", gears=predeccesors)

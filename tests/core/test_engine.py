@@ -9,9 +9,9 @@ from tests.fixtures import Fixture
 class TestSerialEngine:
     """Check all aspects of SerialEngine implementation."""
 
-    def test_construction(self, myfeature: Fixture[Network]) -> None:
+    def test_construction(self, mynetwork: Fixture[Network]) -> None:
         """Test serial engine."""
-        mynet: Network = myfeature
+        mynet: Network = mynetwork
         engine = SerialEngine()
 
         assert engine.is_ready()
@@ -26,16 +26,16 @@ class TestSerialEngine:
         for output_node in new_net.outputs:
             assert output_node.value is not None
 
-    def test_partial_construction(self, myfeature: Fixture[Network]) -> None:
+    def test_partial_construction(self, mynetwork: Fixture[Network]) -> None:
         """Test SerialEngine partial construction."""
-        mynet: Network = myfeature
+        mynet: Network = mynetwork
         engine = SerialEngine()
 
         with pytest.raises(ValueError):
             _ = engine.execute(None, a=3, b=2, c=10)  # type: ignore
 
         dst: OutputNode = mynet.outputs[-1]
-        another_gear = GearNode(lambda x: x ** 2)
+        another_gear = GearNode(lambda x: x**2)
         mynet.graph.add_edge(another_gear, dst)  # type: ignore
 
         with pytest.raises(InvalidGraph) as exp:
@@ -44,9 +44,9 @@ class TestSerialEngine:
         assert exp.value.msg == "found a data node produced by multiple gears: [add_one, <lambda>]"
         assert "gears" in exp.value.params.keys()
 
-    def test_submit_next_execution(self, myfeature: Fixture[Network]) -> None:
+    def test_submit_next_execution(self, mynetwork: Fixture[Network]) -> None:
         """Check execution sequence."""
-        mynet: Network = myfeature.copy()
+        mynet: Network = mynetwork.copy()
         engine = SerialEngine()
 
         mynet.set_input({"a": 1, "b": 3, "c1": 10})
@@ -63,9 +63,9 @@ class TestSerialEngine:
 class TestPoolEngine:
     """Check all aspects of PoolEngine implementation."""
 
-    def test_construction(self, myfeature: Fixture[Network]) -> None:
+    def test_construction(self, mynetwork: Fixture[Network]) -> None:
         """Test serial engine."""
-        mynet: Network = myfeature
+        mynet: Network = mynetwork
         engine = PoolEngine()
 
         assert engine.is_ready() is False
@@ -80,9 +80,9 @@ class TestPoolEngine:
         for output_node in new_net.outputs:
             assert output_node.value is not None
 
-    def test_partial_construction(self, myfeature: Fixture[Network]) -> None:
+    def test_partial_construction(self, mynetwork: Fixture[Network]) -> None:
         """Test SerialEngine partial construction."""
-        mynet: Network = myfeature
+        mynet: Network = mynetwork
         engine = PoolEngine()
         engine.setup()
 
@@ -90,7 +90,7 @@ class TestPoolEngine:
             _ = engine.execute(None, a=3, b=2, c=10)  # type: ignore
 
         dst: OutputNode = mynet.outputs[-1]
-        another_gear = GearNode(lambda x: x ** 2)
+        another_gear = GearNode(lambda x: x**2)
         mynet.graph.add_edge(another_gear, dst)  # type: ignore
 
         with pytest.raises(InvalidGraph) as exp:
@@ -99,9 +99,9 @@ class TestPoolEngine:
         assert exp.value.msg == "found a data node produced by multiple gears: [add_one, <lambda>]"
         assert "gears" in exp.value.params.keys()
 
-    def test_submit_next_execution(self, myfeature: Fixture[Network]) -> None:
+    def test_submit_next_execution(self, mynetwork: Fixture[Network]) -> None:
         """Check execution sequence."""
-        mynet: Network = myfeature.copy()
+        mynet: Network = mynetwork.copy()
         engine = PoolEngine()
         engine.setup()
 
@@ -159,10 +159,10 @@ class TestDaskEngine:
         dask_engine.dask_install(os, ["networkx", "numpy"])  # type: ignore
         mock.assert_called()
 
-    def test_dask_execution(self, myfeature: Fixture[Network], dask_engine: DaskEngine) -> None:
+    def test_dask_execution(self, mynetwork: Fixture[Network], dask_engine: DaskEngine) -> None:
         """Test dask engine."""
         # NOTE: Test network construction.
-        mynet: Network = myfeature.copy()
+        mynet: Network = mynetwork.copy()
         assert dask_engine.is_ready() is True
 
         new_net = dask_engine.execute(mynet, a=5, b=20, c1=30)
@@ -184,9 +184,9 @@ class TestDaskEngine:
         dask_engine._executor = _exec  # type: ignore
 
         # NOTE: Test InvalidGraph structure.
-        mynet = myfeature.copy()
+        mynet = mynetwork.copy()
         dst: OutputNode = mynet.outputs[-1]
-        another_gear = GearNode(lambda x: x ** 2)
+        another_gear = GearNode(lambda x: x**2)
         mynet.graph.add_edge(another_gear, dst)  # type: ignore
 
         with pytest.raises(InvalidGraph) as exp:
@@ -196,7 +196,7 @@ class TestDaskEngine:
         assert "gears" in exp.value.params.keys()
 
         # NOTE: Test execution sequence.
-        mynet = myfeature.copy()
+        mynet = mynetwork.copy()
         mynet.set_input({"a": 1, "b": 3, "c1": 10})
 
         dask_engine._network = mynet  # type: ignore

@@ -2,8 +2,8 @@ from typing import Any, Dict
 
 import networkx
 
-from ilflow.core.api import NetworkPlotAPI
-from ilflow.core.nodes import NetworkNode
+from flowlayer.core.api import NetworkPlotAPI
+from flowlayer.core.nodes import NetworkNode
 
 
 class NetworkPlot(NetworkPlotAPI):

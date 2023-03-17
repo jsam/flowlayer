@@ -6,9 +6,9 @@ from flowlayer.core.api import NetworkPlotAPI
 from flowlayer.core.network import Network
 
 
-def test_network_plot(myfeature: Network) -> None:
+def test_network_plot(mynetwork: Network) -> None:
     """Test network plot."""
-    plot: NetworkPlotAPI = myfeature.plot
+    plot: NetworkPlotAPI = mynetwork.plot
 
     assert plot.show is None
 

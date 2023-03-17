@@ -1,4 +1,4 @@
-from flowlayer.core import Depends, Network
+from flowlayer.core.network import Depends, Network
 
 Flow = Network
 

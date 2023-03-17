@@ -9,7 +9,7 @@ from filelock import FileLock
 @pytest.fixture(scope="session")
 def egg_path() -> Iterator[Path]:
     """Create an egg package."""
-    from datagears.core.package import Package
+    from flowlayer.core.package import Package
 
     lck = FileLock("egg_fixture.lock")
     lck.acquire()

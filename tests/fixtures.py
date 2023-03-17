@@ -1,7 +1,8 @@
 from typing import Any, TypeVar, Union
-from numpy import array, ndarray
-from flowlayer.core.network import Depends, Maybe
 
+from numpy import array, ndarray
+
+from flowlayer.core.network import Depends, Maybe
 
 T = TypeVar("T")
 Fixture = Union[Any, T]

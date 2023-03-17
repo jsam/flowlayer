@@ -20,7 +20,7 @@ class Depends(Generic[T]):
 
     def __init__(self, func: Callable[..., Any]) -> None:
         """Constructor for dependency edge."""
-        from datagears.core.nodes import GearNode
+        from flowlayer.core.nodes import GearNode
 
         self._func: Callable[..., Any] = func
         self._gear = GearNode(self._func)
@@ -69,7 +69,7 @@ class NetworkPropertyMixin(NetworkAPI):
     @property
     def plot(self) -> NetworkPlotAPI:
         """Plot the network."""
-        from datagears.core.plot import NetworkPlot
+        from flowlayer.core.plot import NetworkPlot
 
         return NetworkPlot(self._graph)
 

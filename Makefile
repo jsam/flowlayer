@@ -27,7 +27,7 @@ clean-pyc:
 	find . -name '*~' -exec rm -f {} +
 
 lint: clean
-	flake8 datagears/core tests
+	flake8 flowlayer/core tests
 	mypy . --show-error-codes --platform win32 --platform darwin --platform linux
 
 format:
@@ -35,21 +35,21 @@ format:
 	isort .
 
 test:
-	pytest . -vvv --isort --flake8 --mypy --cache-clear --dist loadfile --max-worker-restart 0 -n auto --cov=datagears tests/
+	pytest . -vvv --isort --flake8 --mypy --cache-clear --dist loadfile --max-worker-restart 0 -n auto --cov=flowlayer tests/
 
 test-all:
 	tox
 
 coverage:
-	coverage run --source datagears setup.py tests
+	coverage run --source flowlayer setup.py tests
 	coverage report -m
 	coverage html
 	open htmlcov/index.html
 
 docs:
-	rm -f docs/datagears.rst
+	rm -f docs/flowlayer.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ datagears
+	sphinx-apidoc -o docs/ flowlayer
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html

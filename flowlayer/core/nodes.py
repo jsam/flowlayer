@@ -8,7 +8,7 @@ class GearException(Exception):
     """Gear exception."""
 
     def __init__(self, gear: "GearNode", params: Dict[str, Any], raised: BaseException) -> None:
-        """"Gear exception constructor."""
+        """ "Gear exception constructor."""
         self.gear = gear
         self.params = params
         self.raised_exception = raised
@@ -20,7 +20,7 @@ class InvalidGraph(Exception):
     """Invalid graph structure found."""
 
     def __init__(self, msg: str, **kwargs: Any) -> None:
-        """"Gear exception constructor."""
+        """ "Gear exception constructor."""
         self.msg = msg
         self.params: Dict[str, Any] = kwargs
 

@@ -6,10 +6,10 @@ from flowlayer.core.nodes import GearNode
 from tests.fixtures import Fixture
 
 
-def test_network_construction(myfeature: Fixture[Network]) -> None:
+def test_network_construction(mynetwork: Fixture[Network]) -> None:
     """Test network construction."""
 
-    network: Network = myfeature
+    network: Network = mynetwork
     graph = network.graph
 
     assert graph
@@ -51,9 +51,9 @@ def test_network_construction(myfeature: Fixture[Network]) -> None:
         assert str(output_node) in expected_outputs
 
 
-def test_network_set_input(myfeature: Fixture[Network]) -> None:
+def test_network_set_input(mynetwork: Fixture[Network]) -> None:
     """Test network set input."""
-    network: Network = myfeature
+    network: Network = mynetwork
 
     with pytest.raises(ValueError):
         network.set_input({})
@@ -70,9 +70,9 @@ def test_network_set_input(myfeature: Fixture[Network]) -> None:
         assert new_values[input_node.name] == input_node.value
 
 
-def test_network_run(myfeature: Fixture[Network]) -> None:
+def test_network_run(mynetwork: Fixture[Network]) -> None:
     """Test network run."""
-    network: Network = myfeature
+    network: Network = mynetwork
 
     result = network.run(a=1, b=3, c1=10)
 

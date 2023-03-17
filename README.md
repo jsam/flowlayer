@@ -2,7 +2,7 @@
 
 [![image][]][1]
 
-Lightweight data processing workflows with typing.
+Lightweight data processing with typed workflows.
 
 # Getting started
 
@@ -48,6 +48,7 @@ my_graph.run(a=5, b=3, c=4, d=6)
 
 # Remote Execution
 
+## Using process pool
 To register and deploy the graph to the cluster and execute it from other
 processes, define the execution engine first:
 
@@ -66,6 +67,7 @@ from flowlayer.core.engine import RayEngine
 with RayEngine(max_workers=4) as engine:
     result = engine.run(my_graph, a=5, b=3, c=4)
 ```
+
 
 
   [image]: https://badge.fury.io/py/flowlayer.png

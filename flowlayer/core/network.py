@@ -229,7 +229,7 @@ class Network(NetworkPropertyMixin):
         if not self._engine.is_ready():
             self._engine.setup()
 
-        network_run = self._engine.execute(self.copy(), **kwargs)
+        network_run = self._engine.run(self.copy(), **kwargs)
 
         if self._feature_store is not None:
             self._last_results = [self._feature_store.set(out.value, network_run) for out in network_run.results]

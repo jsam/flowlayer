@@ -46,7 +46,7 @@ class SerialEngine(EngineAPI):
         """Check if engine is ready for computation."""
         return True
 
-    def execute(self, network: NetworkAPI, **kwargs: Any) -> NetworkAPI:
+    def run(self, network: NetworkAPI, **kwargs: Any) -> NetworkAPI:
         """Runs the computational network and returns the result object."""
         if network is None:
             raise ValueError("cannot execute empty network")
@@ -109,7 +109,7 @@ class PoolEngine(EngineAPI):
         """Prepare the given computation for executor."""
         self._executor = ProcessPoolExecutor(max_workers=self._max_workers)
 
-    def execute(self, network: NetworkAPI, **kwargs: Any) -> NetworkAPI:
+    def run(self, network: NetworkAPI, **kwargs: Any) -> NetworkAPI:
         """Runs the computational network and returns the result object."""
         if network is None:
             raise ValueError("cannot execute empty network")
@@ -210,7 +210,7 @@ class DaskEngine(EngineAPI):
         """Check if engine is ready for computation."""
         return self._executor is not None
 
-    def execute(self, network: NetworkAPI, **kwargs: Any) -> NetworkAPI:
+    def run(self, network: NetworkAPI, **kwargs: Any) -> NetworkAPI:
         """Runs the computational network and returns the result object."""
         if network is None:
             raise ValueError("cannot execute empty network")

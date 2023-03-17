@@ -2,6 +2,7 @@
 
 import os
 import sys
+from pathlib import Path
 
 try:
     from setuptools import setup  # type: ignore[import]
@@ -13,13 +14,13 @@ if sys.argv[-1] == "publish":
     os.system("python setup.py sdist upload")
     sys.exit()
 
-readme = open("README.md").read()
+readme = Path("README.md").read_text()
 doclink = """
 Documentation
 -------------
 
 The full documentation is at http://flowlayer.rtfd.org."""
-history = open("HISTORY.md").read().replace(".. :changelog:", "")
+history = Path("CHANGELOG.md").read_text()
 
 setup(
     name="flowlayer",

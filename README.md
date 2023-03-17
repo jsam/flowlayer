@@ -46,11 +46,27 @@ To execute our newly composed computation, we can execute it with given paramete
 my_graph.run(a=5, b=3, c=4, d=6)
 ```
 
-Or register the graph with the backend and execute it from other
-processes: 
+# Remote Execution
+
+To register and deploy the graph to the cluster and execute it from other
+processes, define the execution engine first:
+
 ```python
-my_graph.register()
+from flowlayer.core.engine import PoolEngine
+
+with PoolEngine(max_workers=4) as engine:
+    result = engine.run(my_graph, a=5, b=3, c=4)
 ```
+
+### Using Ray
+
+```python
+from flowlayer.core.engine import RayEngine
+
+with RayEngine(max_workers=4) as engine:
+    result = engine.run(my_graph, a=5, b=3, c=4)
+```
+
 
   [image]: https://badge.fury.io/py/flowlayer.png
   [1]: http://badge.fury.io/py/flowlayer

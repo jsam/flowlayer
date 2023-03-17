@@ -1,10 +1,7 @@
 import importlib
 from pathlib import Path
 
-CORE_FIXTURES = [str(file).replace("/", ".").replace(".py", "") for file in Path("tests/fixtures").rglob("fixture_*.py")]
-print(CORE_FIXTURES)
-
-INCLUDE_FIXTURES = CORE_FIXTURES
+INCLUDE_FIXTURES = [str(file).replace("/", ".").replace(".py", "") for file in Path("tests/fixtures").rglob("fixture_*.py")]
 
 
 for _fixture in INCLUDE_FIXTURES:

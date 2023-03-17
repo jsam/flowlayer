@@ -92,7 +92,7 @@ def test_network_run(mynetwork: Fixture[Network]) -> None:
 
     network._engine = Mock()  # type: ignore
     network._engine.is_ready = lambda: False  # type: ignore
-    network._engine.execute = lambda _1, **_2: {}  # type: ignore
+    network._engine.run = lambda _1, **_2: {}  # type: ignore
 
     _ = network.run(a=1, b=3, c1=10)
     network._engine.setup.assert_called_once_with()  # type: ignore

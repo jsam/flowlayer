@@ -18,7 +18,7 @@ class TestSerialEngine:
         engine.setup()
         assert engine.is_ready()
 
-        new_net = engine.execute(mynet, a=5, b=20, c1=30)
+        new_net = engine.run(mynet, a=5, b=20, c1=30)
         engine.teardown()
 
         assert new_net is not None
@@ -32,14 +32,14 @@ class TestSerialEngine:
         engine = SerialEngine()
 
         with pytest.raises(ValueError):
-            _ = engine.execute(None, a=3, b=2, c=10)  # type: ignore
+            _ = engine.run(None, a=3, b=2, c=10)  # type: ignore
 
         dst: OutputNode = mynet.outputs[-1]
         another_gear = GearNode(lambda x: x**2)
         mynet.graph.add_edge(another_gear, dst)  # type: ignore
 
         with pytest.raises(InvalidGraph) as exp:
-            _ = engine.execute(mynet, a=5, b=20, c1=30)
+            _ = engine.run(mynet, a=5, b=20, c1=30)
 
         assert exp.value.msg == "found a data node produced by multiple gears: [add_one, <lambda>]"
         assert "gears" in exp.value.params.keys()
@@ -72,7 +72,7 @@ class TestPoolEngine:
         engine.setup()
         assert engine.is_ready() is True
 
-        new_net = engine.execute(mynet, a=5, b=20, c1=30)
+        new_net = engine.run(mynet, a=5, b=20, c1=30)
         engine.teardown()
 
         assert new_net is not None
@@ -87,14 +87,14 @@ class TestPoolEngine:
         engine.setup()
 
         with pytest.raises(ValueError):
-            _ = engine.execute(None, a=3, b=2, c=10)  # type: ignore
+            _ = engine.run(None, a=3, b=2, c=10)  # type: ignore
 
         dst: OutputNode = mynet.outputs[-1]
         another_gear = GearNode(lambda x: x**2)
         mynet.graph.add_edge(another_gear, dst)  # type: ignore
 
         with pytest.raises(InvalidGraph) as exp:
-            _ = engine.execute(mynet, a=5, b=20, c1=30)
+            _ = engine.run(mynet, a=5, b=20, c1=30)
 
         assert exp.value.msg == "found a data node produced by multiple gears: [add_one, <lambda>]"
         assert "gears" in exp.value.params.keys()

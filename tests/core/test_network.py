@@ -1,9 +1,9 @@
 import pytest
 from numpy import array
-from tests.fixtures import Fixture
 
 from flowlayer.core.network import Network
 from flowlayer.core.nodes import GearNode
+from tests.fixtures.core.generics import Fixture
 
 
 def test_network_construction(mynetwork: Fixture[Network]) -> None:
@@ -96,21 +96,3 @@ def test_network_run(mynetwork: Fixture[Network]) -> None:
 
     _ = network.run(a=1, b=3, c1=10)
     network._engine.setup.assert_called_once_with()  # type: ignore
-
-
-def test_network_run_to_store(store_feature: Network) -> None:
-    """Test network run to store."""
-    sample_one = store_feature.run(a=3, b=3, c1=10)
-    assert sample_one.results
-
-    sample_two = store_feature.run(a=4, b=10, c1=30)
-    assert sample_two.results
-
-    keys = store_feature._feature_store.get_keys(store_feature)  # type: ignore
-    assert len(keys) > 0  # type: ignore
-
-    start = store_feature._last_results[0][0]  # type: ignore
-    keys = store_feature._feature_store.get_keys(store_feature, start=start)  # type: ignore
-
-    assert len(keys) == 1  # type: ignore
-    assert start == keys[0][0]

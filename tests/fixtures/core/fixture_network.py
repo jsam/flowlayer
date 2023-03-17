@@ -1,4 +1,3 @@
-
 import pytest
 from numpy import array, ndarray
 

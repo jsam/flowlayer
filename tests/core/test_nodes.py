@@ -9,9 +9,8 @@ from numpy import ndarray
 
 def test_simple_func_analysis() -> None:
     """Test function analysis."""
-    from tests.fixtures import add
-
     from flowlayer.core.nodes import Signature
+    from tests.fixtures.core.fixture_network import add
 
     sig = Signature(add)
 
@@ -27,10 +26,9 @@ def test_simple_func_analysis() -> None:
 
 def test_depends_func_analysis() -> None:
     """Test function analysis with expressed dependency."""
-    from tests.fixtures import reduce
-
     from flowlayer.core.network import Depends
     from flowlayer.core.nodes import Signature
+    from tests.fixtures.core.fixture_network import reduce
 
     sig = Signature(reduce)
 
@@ -41,7 +39,7 @@ def test_depends_func_analysis() -> None:
     params = sig.params
     assert params["c1"] == Parameter("c1", Parameter.POSITIONAL_OR_KEYWORD, annotation=int)
 
-    assert "sum: Union[Any, int] = <datagears.core.network.Depends object at" in str(params["sum"])
+    assert "sum: Union[Any, int] = <flowlayer.core.network.Depends object at" in str(params["sum"])
     assert isinstance(params["sum"].default, Depends)
     assert isinstance(params["sum"].default._func, types.FunctionType)
 

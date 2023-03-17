@@ -2,7 +2,7 @@
 
 [![image][]][1]
 
-Lightweight data processing workflows.
+Lightweight data processing workflows with typing.
 
 # Getting started
 

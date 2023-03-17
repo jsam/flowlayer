@@ -29,7 +29,7 @@ class TestPackage:
         package = Package()
         assert package.root == _cwd
 
-        os.chdir("datagears/core")
+        os.chdir("flowlayer/core")
         package_child = Package()
         assert package_child.root == _cwd
 
@@ -43,7 +43,7 @@ class TestPackage:
         """Test chdir context manager."""
         _cwd = Path(os.getcwd())
 
-        with chdir("datagears/core"):
+        with chdir("flowlayer/core"):
             assert Path(os.getcwd()) == _cwd / "flowlayer" / "core"
 
         assert Path(os.getcwd()) == _cwd

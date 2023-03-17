@@ -2,9 +2,9 @@ import uuid
 
 import pytest
 
-from datagears.core.api import FeatureStoreAPI
-from datagears.core.network import Network
-from datagears.core.sampler import Sampler
+from flowlayer.core.api import FeatureStoreAPI
+from flowlayer.core.network import Network
+from flowlayer.core.sampler import Sampler
 
 
 class TestSampler:

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from datagears.core.package import Package, chdir
+from flowlayer.core.package import Package, chdir
 
 
 class TestPackage:
@@ -44,7 +44,7 @@ class TestPackage:
         _cwd = Path(os.getcwd())
 
         with chdir("datagears/core"):
-            assert Path(os.getcwd()) == _cwd / "datagears" / "core"
+            assert Path(os.getcwd()) == _cwd / "flowlayer" / "core"
 
         assert Path(os.getcwd()) == _cwd
 

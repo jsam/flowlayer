@@ -1,8 +1,8 @@
 import pytest
 from numpy import array
 
-from datagears.core.network import Network
-from datagears.core.nodes import GearNode
+from flowlayer.core.network import Network
+from flowlayer.core.nodes import GearNode
 from tests.fixtures import Fixture
 
 

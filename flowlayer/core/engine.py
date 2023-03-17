@@ -2,8 +2,8 @@ from concurrent.futures import Future, ProcessPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from ilflow.core.api import EngineAPI, NetworkAPI
-from ilflow.core.nodes import DataNode, GearNode, InvalidGraph, OutputNode
+from flowlayer.core.api import EngineAPI, NetworkAPI
+from flowlayer.core.nodes import DataNode, GearNode, InvalidGraph, OutputNode
 
 
 class SerialEngine(EngineAPI):
@@ -133,21 +133,6 @@ class PoolEngine(EngineAPI):
             raise ValueError("engine not running")
 
         self._executor.shutdown(wait=True)
-
-
-# def dask_install(requirements: List[str]) -> None:
-#     """Install depedencies on cluster workers."""
-#     import os
-
-#     aligned: str = " ".join(requirements)
-#     os.system(f"pip install -U setuptools {aligned}")
-
-
-# def dask_clean() -> None:
-#     """Cleanup previously deployed eggs."""
-#     import os
-
-#     os.system("find . -type f -name '*.egg' -delete")
 
 
 class DaskEngine(EngineAPI):

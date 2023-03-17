@@ -9,8 +9,8 @@ from numpy import ndarray
 
 def test_simple_func_analysis() -> None:
     """Test function analysis."""
-    from datagears.core.nodes import Signature
-    from datagears.features.dummy import add
+    from flowlayer.core.nodes import Signature
+    from tests.fixtures import add
 
     sig = Signature(add)
 
@@ -26,9 +26,9 @@ def test_simple_func_analysis() -> None:
 
 def test_depends_func_analysis() -> None:
     """Test function analysis with expressed dependency."""
-    from datagears.core.network import Depends
-    from datagears.core.nodes import Signature
-    from datagears.features.dummy import reduce
+    from flowlayer.core.network import Depends
+    from flowlayer.core.nodes import Signature
+    from tests.fixtures import reduce
 
     sig = Signature(reduce)
 
@@ -56,7 +56,7 @@ def test_depends_func_analysis() -> None:
 
 def test_gears_exception() -> None:
     """Check gears exception attributes."""
-    from datagears.core.nodes import GearException, GearNode
+    from flowlayer.core.nodes import GearException, GearNode
 
     node = GearNode(lambda x: x)
     params: Dict[str, Any] = {}
@@ -72,7 +72,7 @@ def test_gears_exception() -> None:
 
 def test_standalone_gear_node() -> None:
     """Check standalone gear node."""
-    from datagears.core.nodes import GearNode
+    from flowlayer.core.nodes import GearNode
 
     gear_node = GearNode(lambda x: x + 1)
 
@@ -85,8 +85,8 @@ def test_standalone_gear_node() -> None:
 
 def test_graph_gear_node_exception() -> None:
     """Check standalone gear node exception handling."""
-    from datagears.core.network import Network
-    from datagears.core.nodes import GearException
+    from flowlayer.core.network import Network
+    from flowlayer.core.nodes import GearException
 
     def f(p: int = 3) -> ndarray:
         raise KeyError
@@ -101,7 +101,7 @@ def test_graph_gear_node_exception() -> None:
 
 def test_graph_gear_node() -> None:
     """Check gear node with associated graph."""
-    from datagears.core.network import Network
+    from flowlayer.core.network import Network
 
     def f(p: int = 3) -> ndarray:
         return ndarray([p + 1])
@@ -121,7 +121,7 @@ def test_graph_gear_node() -> None:
 
 def test_standalone_data_node() -> None:
     """Check standalone data node."""
-    from datagears.core.nodes import DataNode
+    from flowlayer.core.nodes import DataNode
 
     data_node = DataNode("some_param", None, str)
 
@@ -145,7 +145,7 @@ def test_graph_data_node() -> None:
     """Check data node with associated graph."""
     from numpy import ndarray
 
-    from datagears.core.network import Network
+    from flowlayer.core.network import Network
 
     def f(p: int = 3) -> ndarray:
         return ndarray([p + 1])

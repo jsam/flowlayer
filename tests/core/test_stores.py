@@ -2,13 +2,13 @@ from typing import List, Tuple
 
 from numpy import array, ndarray, random
 
-from datagears.core.network import Network
+from flowlayer.core.network import Network
 
 
 class TestFeatureStore:
     def test_feature_store(self, myfeature: Network) -> None:
         """Test feature store get and set."""
-        from datagears.core.stores import FeatureStore
+        from flowlayer.core.stores import FeatureStore
 
         store = FeatureStore()
 
@@ -23,7 +23,7 @@ class TestFeatureStore:
 
     def test_multiple_samples(self, myfeature: Network) -> None:
         """Test generation of multiple samples."""
-        from datagears.core.stores import FeatureStore
+        from flowlayer.core.stores import FeatureStore
 
         store = FeatureStore()
 

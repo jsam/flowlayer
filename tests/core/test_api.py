@@ -3,7 +3,7 @@ from typing import Any
 
 import pytest
 
-from datagears.core.api import EngineAPI, FeatureStoreAPI, NetworkAPI, NetworkPlotAPI
+from flowlayer.core.api import EngineAPI, FeatureStoreAPI, NetworkAPI, NetworkPlotAPI
 
 
 @pytest.mark.parametrize(

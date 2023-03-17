@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional, Tuple, Type
 import networkx
 import numpy
 
-from ilflow.core.nodes import GearInput, GearNode, GearOutput, OutputNode
+from flowlayer.core.nodes import GearInput, GearNode, GearOutput, OutputNode
 
 
 class NetworkPlotAPI(metaclass=abc.ABCMeta):

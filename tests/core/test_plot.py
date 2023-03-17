@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-from datagears.core.api import NetworkPlotAPI
-from datagears.core.network import Network
+from flowlayer.core.api import NetworkPlotAPI
+from flowlayer.core.network import Network
 
 
 def test_network_plot(myfeature: Network) -> None:

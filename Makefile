@@ -59,6 +59,9 @@ test:
 test-all:
 	tox
 
+checks: format lint test
+	echo "All checks passed!"
+
 coverage:
 	coverage run --source flowlayer setup.py tests
 	coverage report -m

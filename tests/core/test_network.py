@@ -1,5 +1,5 @@
 import pytest
-from numpy import array
+from numpy import array, ndarray
 
 from flowlayer.core.network import Network
 from flowlayer.core.nodes import GearNode
@@ -74,9 +74,12 @@ def test_network_run(mynetwork: Fixture[Network]) -> None:
     """Test network run."""
     network: Network = mynetwork
 
-    result = network.run(a=1, b=3, c1=10)
+    assert network.input_shape == {"c1": int, "a": int, "b": int}
+    assert network.output_shape == {"my_out": ndarray}
 
+    result = network.run(a=1, b=3, c1=10)
     assert result
+
     output = {out.name: out.value for out in result.outputs}
     expected = {"my_out": array([-6, 1]), "reduced": -6, "sum": 4, "add_one": 1}
 

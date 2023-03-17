@@ -98,8 +98,13 @@ class NetworkPropertyMixin(NetworkAPI):
     def input_shape(self) -> Dict[str, Type[Any]]:
         """Returns input shape of the computational graph."""
         inputs: Dict[str, Type[Any]] = {node.name: node.annotation for node in self._graph.nodes if isinstance(node, GearInput)}  # type: ignore
-
         return inputs
+
+    @property
+    def output_shape(self) -> Dict[str, Type[Any]]:
+        """Returns output shape of the computational graph."""
+        outputs: Dict[str, Type[Any]] = {node.name: node.annotation for node in self._graph.nodes if isinstance(node, GearOutput)}  # type: ignore
+        return outputs
 
     @property
     def inputs(self) -> List[GearInput]:

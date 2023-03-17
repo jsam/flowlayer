@@ -35,11 +35,16 @@ Which should produce following computational graph:
 
 
 To inspect the `input_shape` we can check with:
-
 ```python
 network.input_shape
 > {'c': int, 'a': typing.Any, 'b': typing.Any}
 ```
+and similary `output_shape`:
+```python
+network.output_shape
+> {'my_out': <class 'float'>}
+```
+
 
 To execute our newly composed computation, we can execute it with given parameters:
 ```python

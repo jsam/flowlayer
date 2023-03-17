@@ -6,7 +6,7 @@ authors = ["sam <contact@justsam.io>"]
 license = "BSD 3-Clause License"
 
 [tool.poetry.dependencies]
-python = "^3.8,<3.11"
+python = "^3.8"
 networkx = "^2.5"
 matplotlib = "^3.3.4"
 pydot = "^1.4.2"

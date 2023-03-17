@@ -52,5 +52,5 @@ processes:
 my_graph.register()
 ```
 
-  [image]: https://badge.fury.io/py/datagears.png
-  [1]: http://badge.fury.io/py/datagears
+  [image]: https://badge.fury.io/py/flowlayer.png
+  [1]: http://badge.fury.io/py/flowlayer

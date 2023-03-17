@@ -28,6 +28,7 @@ jobs:
   
       - name: Publish package to PyPI
         run: |
+          curl -sSL https://install.python-poetry.org | python3 -
           poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
           poetry install
           poetry build

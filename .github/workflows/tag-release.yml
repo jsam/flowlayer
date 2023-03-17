@@ -34,8 +34,8 @@ jobs:
           poetry publish
 
   CreateGitHubRelease:
-    runs-on: self-hosted
-    needs: [SetupENV, TagBuild]
+    runs-on: ubuntu-20.04
+    needs: [TagBuild]
     permissions:
       contents: 'write'
       id-token: 'write'

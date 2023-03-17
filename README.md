@@ -2,14 +2,12 @@
 
 [![image][]][1]
 
-Easily build your data processing workflows.
----
-
+Lightweight data processing workflows.
 
 # Getting started
 
 ```python
-from datagears import Depends, Feature
+from flowlayer import Depends, Flow
 
 
 def add(a, b) -> int:
@@ -24,7 +22,7 @@ def my_out(reduced: int = Depends(reduce)) -> float:
     return reduced / 2
 
 
-my_graph = Feature(name="mynet", outputs=[my_out]) 
+my_graph = Flow(name="mynet", outputs=[my_out]) 
 my_graph.plot.view()
 ```
 

@@ -7,9 +7,9 @@ from networkx import MultiDiGraph
 from networkx.algorithms.dag import descendants
 from networkx.algorithms.traversal.breadth_first_search import bfs_edges
 
-from ilflow.core.api import EngineAPI, FeatureStoreAPI, NetworkAPI, NetworkPlotAPI
-from ilflow.core.engine import SerialEngine
-from ilflow.core.nodes import DataNode, GearInput, GearInputOutput, GearNode, GearOutput, NetworkNode, OutputNode
+from flowlayer.core.api import EngineAPI, FeatureStoreAPI, NetworkAPI, NetworkPlotAPI
+from flowlayer.core.engine import SerialEngine
+from flowlayer.core.nodes import DataNode, GearInput, GearInputOutput, GearNode, GearOutput, NetworkNode, OutputNode
 
 T = TypeVar("T")
 Maybe = Union[Any, T]

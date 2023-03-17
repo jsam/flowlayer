@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flowlayer"
-version = "0.1.0"
+version = "0.1.1"
 description = "Easily build your data processing workflows."
 authors = ["sam <contact@justsam.io>"]
 license = "BSD 3-Clause License"
@@ -34,6 +34,7 @@ black = "^23.1.0"
 isort = "^5.12.0"
 mypy = "^1.1.1"
 ipython = "^8.11.0"
+auto-changelog = "^0.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

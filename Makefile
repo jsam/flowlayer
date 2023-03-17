@@ -1,4 +1,23 @@
+include VERSION
+
 .PHONY: help clean clean-pyc clean-build list test test-all coverage docs release sdist
+
+
+release-notes:
+	@echo "Building release notes for $(VERSION):"
+	rm -f LATEST.md
+	auto-changelog --output PREP.md --latest-version ${VERSION} --starting-commit ${STARTING_COMMIT}
+	tail -n +2 PREP.md > LATEST.md
+	rm -f PREP.md
+	gsed -i "2r LATEST.md" CHANGELOG.md
+
+
+release: release-notes
+	@echo "Building new version: ${VERSION}"
+	#gsed -i 's/__version__ =.*/__version__ = "${VERSION}"/g' translate/__init__.py
+	poetry version ${VERSION}
+	poetry lock --no-update
+
 
 help:
 	@echo "clean-build - remove build artifacts"
@@ -54,11 +73,13 @@ docs:
 	$(MAKE) -C docs html
 	open docs/_build/html/index.html
 
-release: clean
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
+# release-minor: clean
+# 	python setup.py sdist upload
+# 	python setup.py bdist_wheel upload
+	
 
 sdist: clean
 	python setup.py sdist
 	python setup.py bdist_wheel upload
 	ls -l dist
+

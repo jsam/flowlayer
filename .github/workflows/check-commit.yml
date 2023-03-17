@@ -1,0 +1,45 @@
+name: flowlayer - check commit
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+    
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+    
+    # - name: start services
+    #   run: docker-compose -f services/docker-compose.yml up -d
+    
+    # - name: check running services
+    #   run: docker ps -a
+
+    - name: setup python
+      uses: actions/setup-python@v2.2.2
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: 'x64'
+    
+    - name: install system packages
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y graphviz
+
+    - name: install dependencies
+      run: pip install poetry && poetry install
+    
+    - name: run tests
+      run: poetry run make test
+    
